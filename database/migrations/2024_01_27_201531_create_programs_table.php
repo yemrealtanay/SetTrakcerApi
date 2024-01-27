@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id('user_id');
+        Schema::create('programs', function (Blueprint $table) {
+            $table->id('program_id');
+            $table->foreignIdFor(\App\Models\User::class, 'user_id');
             $table->string('name');
-            $table->string('surname');
-            $table->string('email')->unique();
-            $table->boolean('is_coach');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('programs');
     }
 };

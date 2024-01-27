@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('coaches_has_users', function (Blueprint $table) {
-            $table->id('coach_has_user_id');
-            $table->foreignIdFor(\App\Models\User::class, 'user_id');
-            $table->foreignIdFor(\App\Models\User::class, 'coach_user_id');
+        Schema::create('program_has_exercises', function (Blueprint $table) {
+            $table->id('program_has_exercise_id');
+            $table->foreignIdFor(\App\Models\Program::class, 'program_id');
+            $table->foreignIdFor(\App\Models\WeekDay::class, 'week_day_id');
+            $table->foreignIdFor(\App\Models\Exercise::class, 'exercise_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('coaches_has_users');
+        Schema::dropIfExists('program_has_exercises');
     }
 };
